@@ -35,7 +35,15 @@ public class LoginBasicTest {
 		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
 		//driver = new FirefoxDriver();
 		try {
-			driver=new RemoteWebDriver(new URL("http://chrome:4444"),new ChromeOptions());
+			switch(System.getenv("TEST_BROWSER")) {
+			case "chrome":
+				driver=new RemoteWebDriver(new URL("http://chrome:4444"),new ChromeOptions()); break;
+			case "edge":
+				driver=new RemoteWebDriver(new URL("http://edge:4444"),new EdgeOptions()); break;
+			case "firefox":
+				driver=new RemoteWebDriver(new URL("http://firefox:4444"),new FirefoxOptions()); break;
+				default: System.out.println("TEST_BROWSER not set");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
