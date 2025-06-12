@@ -46,7 +46,7 @@ test-job:
     stage: test
     parallel:
      matrix:
-     - BROWSER: ["firefox"]
+     - BROWSER: ["chrome","edge","firefox"]
     services:
     - name: selenium/standalone-$BROWSER
       alias: $BROWSER
@@ -56,5 +56,11 @@ test-job:
     - apt install maven -y
     - export TEST_BROWSER=$BROWSER
     - mvn $MAVEN_CLI_OPTS clean verify
+    artifacts:
+      paths:
+       - target/surefire-reports/**
+      when: always
+      access: all
+      expire_in: "30 days"
 
 
