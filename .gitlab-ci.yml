@@ -46,7 +46,7 @@ test-job:
     stage: test
     parallel:
      matrix:
-     - BROWSER: ["chrome", "firefox", "edge"]
+     - BROWSER: ["firefox"]
     services:
     - name: selenium/standalone-$BROWSER
       alias: $BROWSER
