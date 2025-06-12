@@ -21,7 +21,13 @@ image: ubuntu:24.04
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
-  - deploy
+  
+default:
+ before_script:
+    - apt update -y && apt upgrade -y
+    - apt install openjdk-21-jdk -y
+    - apt install maven -y
+
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
@@ -34,8 +40,23 @@ chrome-job:
     - name: selenium/standalone-chrome
       alias: chrome
     script:
-    - apt update -y && apt upgrade -y
-    - apt install openjdk-21-jdk -y
-    - apt install maven -y
+    - export TEST_BROWSER=chrome
     - mvn clean verify
+firefox-job:
+    stage: test
+    services:
+    - name: selenium/standalone-firefox
+      alias: firefox
+    script:
+    - export TEST_BROWSER=forefox
+    - mvn clean verify
+edge-job:
+    stage: test
+    services:
+    - name: selenium/standalone-edge
+      alias: edge
+    script:
+    - export TEST_BROWSER=edge
+    - mvn clean verify
+
 
