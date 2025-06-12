@@ -29,7 +29,7 @@ public class LoginBasicTest {
 	private WebDriver driver;
 
 	@BeforeTest
-	public void setUp() {
+	public synchronized void setUp() {
 		//	System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
 	//	driver = new ChromeDriver();
 		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
