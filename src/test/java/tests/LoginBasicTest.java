@@ -4,8 +4,12 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.edge.EdgeOptions;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -25,10 +29,16 @@ public class LoginBasicTest {
 
 	@BeforeTest
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
-		driver = new ChromeDriver();
+		//	System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
+	//	driver = new ChromeDriver();
 		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
 		//driver = new FirefoxDriver();
+		try {
+			driver=new RemoteWebDriver(new URL("http://localhost:4444"),new ChromeOptions());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@AfterTest
