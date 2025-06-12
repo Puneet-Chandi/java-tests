@@ -34,6 +34,9 @@ public class LoginBasicTest {
 	//	driver = new ChromeDriver();
 		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
 		//driver = new FirefoxDriver();
+		
+		
+		
 		try {
 			switch(System.getenv("TEST_BROWSER")) {
 			case "chrome":
@@ -48,6 +51,10 @@ public class LoginBasicTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
+		
 	}
 
 	@AfterTest

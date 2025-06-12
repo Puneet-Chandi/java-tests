@@ -52,18 +52,18 @@ test_job:
     - apt install maven -y
     - export TEST_BROWSER=$BROWSER
     - mvn $MAVEN_CLI_OPTS clean verify
-    artifacts:
-      paths:
-       - target/extent-reports/
-      when: always 
-      access: all
-      expire_in: "30 days"
+    
 report_job:
        stage: report
        script: 
         - echo "Extent Report is available in the artifact section."
-       dependencies:
-        - test_job
+       artifacts:
+        paths:
+        - target/extent-reports/**
+        when: always 
+        access: all
+        expire_in: "30 days"
+
 
       
 
