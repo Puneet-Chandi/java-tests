@@ -58,7 +58,7 @@ test-job:
       when: always
       access: all
       reports:
-       junit: target/junit.xml
+       junit: target\surefire-reports\junitreports
       expire_in: "30 days"
 
 
