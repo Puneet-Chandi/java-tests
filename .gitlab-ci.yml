@@ -54,11 +54,11 @@ test-job:
     artifacts:
       paths:
        - target/surefire-reports/**
-       - app/junit.xml
+       - target/junit.xml
       when: always
       access: all
       reports:
-       junit: app/junit.xml
+       junit: target/junit.xml
       expire_in: "30 days"
 
 
