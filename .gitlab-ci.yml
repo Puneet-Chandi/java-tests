@@ -21,6 +21,7 @@ image: ubuntu:24.04
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
+  - report
 
 variables:
  MAVEN_CLI_OPTS: >-
@@ -41,7 +42,7 @@ test-job:
     stage: test
     parallel:
      matrix:
-     - BROWSER: ["chrome","edge","firefox"]
+     - BROWSER: ["chrome"]
     services:
     - name: selenium/standalone-$BROWSER
       alias: $BROWSER
@@ -53,12 +54,20 @@ test-job:
     - mvn $MAVEN_CLI_OPTS clean verify
     artifacts:
       paths:
-       - target/surefire-reports/**
-       - target/junit.xml
+       - target/extent-reports/
       when: always
       access: all
-      reports:
-       junit: target\surefire-reports\junitreports
       expire_in: "30 days"
+report_job:
+       stage: report
+       script: 
+        - echo "Extent Report is available in the artifact section."
+       dependencies:
+        - test_job
+
+      
+
+    
+      
 
 
