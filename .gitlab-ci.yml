@@ -28,10 +28,12 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - echo "Compiling the code..."
     - echo "Compile complete."
-
-unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
-  script:
+chrome-job:
+    stage: test
+    services:
+    - name: selenium/standalone-chrome
+      alias: chrome
+    script:
     - apt update -y && apt upgrade -y
     - apt install openjdk-21-jdk -y
     - apt install maven -y
