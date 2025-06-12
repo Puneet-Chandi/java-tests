@@ -35,7 +35,7 @@ public class LoginBasicTest {
 		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
 		//driver = new FirefoxDriver();
 		try {
-			driver=new RemoteWebDriver(new URL("http://localhost:4444"),new ChromeOptions());
+			driver=new RemoteWebDriver(new URL("http://chrome:4444"),new ChromeOptions());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
